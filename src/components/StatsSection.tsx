@@ -5,6 +5,11 @@ const Counter = ({ value, duration = 2 }: { value: string; duration?: number }) 
     const nodeRef = useRef<HTMLSpanElement>(null);
     const isInView = useInView(nodeRef, { once: true, margin: "-50px" });
 
+    // Handle special case for 24/7
+    if (value === "24/7") {
+        return <span ref={nodeRef} className="gold-shimmer">24/7</span>;
+    }
+
     // Extract number from string (e.g., "10+" -> 10, "100%" -> 100)
     const numericValue = parseInt(value.replace(/\D/g, "")) || 0;
     const suffix = value.replace(/[0-9]/g, "");
