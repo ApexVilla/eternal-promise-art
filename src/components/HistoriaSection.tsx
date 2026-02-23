@@ -27,7 +27,7 @@ const HistoriaSection = () => {
               <span className="block text-primary/70 text-sm mt-2 not-italic font-body">— Deuteronomio 7:9</span>
             </blockquote>
             <p className="text-foreground/70 font-body leading-relaxed">
-              Esta promesa marcó nuestra visión: crear con fidelidad, amor y excelencia, dejando huella en cada detalle.
+              Esta promesa marcó nuestra visión inquebrantable de crear cada detalle y experiencia con propósito, excelencia y compromiso.
             </p>
           </motion.div>
 
