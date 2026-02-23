@@ -2,6 +2,18 @@ import { useEffect, useRef } from "react";
 import { motion } from "framer-motion";
 import heroBg from "@/assets/hero-bg.jpg";
 
+type Particle = { x: number; y: number; size: number; speedY: number; opacity: number; pulse: number };
+
+const createParticles = (w: number, h: number): Particle[] =>
+  Array.from({ length: 60 }, () => ({
+    x: Math.random() * w,
+    y: Math.random() * h,
+    size: Math.random() * 2 + 0.5,
+    speedY: -(Math.random() * 0.3 + 0.1),
+    opacity: Math.random() * 0.5 + 0.2,
+    pulse: Math.random() * Math.PI * 2,
+  }));
+
 const GoldParticles = () => {
   const canvasRef = useRef<HTMLCanvasElement>(null);
 
@@ -13,18 +25,7 @@ const GoldParticles = () => {
 
     canvas.width = window.innerWidth;
     canvas.height = window.innerHeight;
-
-    const particles: { x: number; y: number; size: number; speedY: number; opacity: number; pulse: number }[] = [];
-    for (let i = 0; i < 50; i++) {
-      particles.push({
-        x: Math.random() * canvas.width,
-        y: Math.random() * canvas.height,
-        size: Math.random() * 2 + 0.5,
-        speedY: -(Math.random() * 0.3 + 0.1),
-        opacity: Math.random() * 0.5 + 0.2,
-        pulse: Math.random() * Math.PI * 2,
-      });
-    }
+    let particles = createParticles(canvas.width, canvas.height);
 
     let animationId: number;
     const animate = () => {
@@ -33,7 +34,10 @@ const GoldParticles = () => {
         p.y += p.speedY;
         p.pulse += 0.02;
         const currentOpacity = p.opacity * (0.5 + 0.5 * Math.sin(p.pulse));
-        if (p.y < -10) { p.y = canvas.height + 10; p.x = Math.random() * canvas.width; }
+        if (p.y < -10) {
+          p.y = canvas.height + 10;
+          p.x = Math.random() * canvas.width;
+        }
         ctx.beginPath();
         ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
         ctx.fillStyle = `hsla(43, 72%, 55%, ${currentOpacity})`;
@@ -43,9 +47,17 @@ const GoldParticles = () => {
     };
     animate();
 
-    const handleResize = () => { canvas.width = window.innerWidth; canvas.height = window.innerHeight; };
+    const handleResize = () => {
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
+      // Re-create particles within the new bounds
+      particles = createParticles(canvas.width, canvas.height);
+    };
     window.addEventListener("resize", handleResize);
-    return () => { cancelAnimationFrame(animationId); window.removeEventListener("resize", handleResize); };
+    return () => {
+      cancelAnimationFrame(animationId);
+      window.removeEventListener("resize", handleResize);
+    };
   }, []);
 
   return <canvas ref={canvasRef} className="absolute inset-0 pointer-events-none z-10" />;
@@ -55,7 +67,13 @@ const HeroSection = () => (
   <section id="hero" className="relative min-h-screen flex items-center justify-center overflow-hidden">
     {/* Background image */}
     <div className="absolute inset-0">
-      <img src={heroBg} alt="" className="w-full h-full object-cover" />
+      <img
+        src={heroBg}
+        alt=""
+        className="w-full h-full object-cover"
+        loading="eager"
+        fetchPriority="high"
+      />
       <div className="absolute inset-0 bg-background/80" />
     </div>
 

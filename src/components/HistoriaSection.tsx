@@ -1,22 +1,20 @@
 import { motion } from "framer-motion";
 import storyImage from "@/assets/story-image.jpg";
 
-const useInView = () => ({
+const animProps = {
   initial: { opacity: 0, y: 40 },
   whileInView: { opacity: 1, y: 0 },
   viewport: { once: true, margin: "-100px" },
   transition: { duration: 0.8 },
-});
+} as const;
 
 const HistoriaSection = () => {
-  const anim = useInView();
-
   return (
     <section id="historia" className="py-24 md:py-32 section-darker">
       <div className="container mx-auto px-4">
         <div className="grid md:grid-cols-2 gap-12 lg:gap-20 items-center">
           {/* Text */}
-          <motion.div {...anim}>
+          <motion.div {...animProps}>
             <p className="text-primary font-body text-sm tracking-[0.3em] uppercase mb-4">🌟 Nuestra Historia</p>
             <h2 className="text-3xl md:text-5xl font-display font-bold mb-6">
               <span className="gold-shimmer">El Origen de Berit Olam</span>
@@ -35,12 +33,17 @@ const HistoriaSection = () => {
 
           {/* Image */}
           <motion.div
-            {...anim}
+            {...animProps}
             transition={{ duration: 0.8, delay: 0.2 }}
             className="relative"
           >
             <div className="relative overflow-hidden rounded-sm">
-              <img src={storyImage} alt="Berit Olam - Arte y Elegancia" className="w-full h-[500px] object-cover" />
+              <img
+                src={storyImage}
+                alt="Berit Olam - Arte y Elegancia"
+                className="w-full h-[500px] object-cover"
+                loading="lazy"
+              />
               <div className="absolute inset-0 bg-gradient-to-t from-background/60 to-transparent" />
             </div>
             <div className="absolute -bottom-4 -right-4 w-24 h-24 gold-border opacity-30 rounded-sm" />

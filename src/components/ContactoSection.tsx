@@ -1,13 +1,16 @@
 import { useState } from "react";
 import { motion } from "framer-motion";
 
+const WHATSAPP_NUMBER = "5511999999999"; // ← Actualiza con tu número real
+
 const ContactoSection = () => {
   const [formData, setFormData] = useState({ nombre: "", telefono: "", evento: "", mensaje: "" });
+
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     const whatsappMsg = `Hola Berit Olam! Me llamo ${formData.nombre}. Tipo de evento: ${formData.evento}. ${formData.mensaje}`;
-    window.open(`https://wa.me/5511999999999?text=${encodeURIComponent(whatsappMsg)}`, "_blank");
+    window.open(`https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(whatsappMsg)}`, "_blank");
   };
 
   return (
@@ -45,7 +48,7 @@ const ContactoSection = () => {
                 placeholder={field.placeholder}
                 value={formData[field.name as keyof typeof formData]}
                 onChange={(e) => setFormData({ ...formData, [field.name]: e.target.value })}
-                className="w-full bg-card gold-border-subtle rounded-sm px-4 py-3 text-foreground font-body placeholder:text-muted-foreground focus:outline-none focus:gold-border transition-all duration-300"
+                className="w-full bg-card gold-border-subtle rounded-sm px-4 py-3 text-foreground font-body placeholder:text-muted-foreground outline-none focus:border-primary focus:ring-1 focus:ring-primary/40 transition-all duration-300"
                 required
               />
             </div>
@@ -56,7 +59,7 @@ const ContactoSection = () => {
             <select
               value={formData.evento}
               onChange={(e) => setFormData({ ...formData, evento: e.target.value })}
-              className="w-full bg-card gold-border-subtle rounded-sm px-4 py-3 text-foreground font-body focus:outline-none focus:gold-border transition-all duration-300"
+              className="w-full bg-card gold-border-subtle rounded-sm px-4 py-3 text-foreground font-body outline-none focus:border-primary focus:ring-1 focus:ring-primary/40 transition-all duration-300"
               required
             >
               <option value="">Seleccionar...</option>
@@ -75,7 +78,7 @@ const ContactoSection = () => {
               value={formData.mensaje}
               onChange={(e) => setFormData({ ...formData, mensaje: e.target.value })}
               rows={4}
-              className="w-full bg-card gold-border-subtle rounded-sm px-4 py-3 text-foreground font-body placeholder:text-muted-foreground focus:outline-none focus:gold-border transition-all duration-300 resize-none"
+              className="w-full bg-card gold-border-subtle rounded-sm px-4 py-3 text-foreground font-body placeholder:text-muted-foreground outline-none focus:border-primary focus:ring-1 focus:ring-primary/40 transition-all duration-300 resize-none"
             />
           </div>
 

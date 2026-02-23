@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 
 const testimonials = [
@@ -24,9 +24,14 @@ const testimonials = [
 
 const TestimoniosSection = () => {
   const [current, setCurrent] = useState(0);
+  const isPaused = useRef(false);
 
   useEffect(() => {
-    const timer = setInterval(() => setCurrent((c) => (c + 1) % testimonials.length), 5000);
+    const timer = setInterval(() => {
+      if (!isPaused.current) {
+        setCurrent((c) => (c + 1) % testimonials.length);
+      }
+    }, 5000);
     return () => clearInterval(timer);
   }, []);
 
@@ -46,7 +51,11 @@ const TestimoniosSection = () => {
           </h2>
         </motion.div>
 
-        <div className="max-w-2xl mx-auto text-center relative min-h-[250px]">
+        <div
+          className="max-w-2xl mx-auto text-center relative min-h-[250px]"
+          onMouseEnter={() => { isPaused.current = true; }}
+          onMouseLeave={() => { isPaused.current = false; }}
+        >
           <AnimatePresence mode="wait">
             <motion.div
               key={current}
@@ -75,9 +84,8 @@ const TestimoniosSection = () => {
               <button
                 key={i}
                 onClick={() => setCurrent(i)}
-                className={`w-2 h-2 rounded-full transition-all duration-300 ${
-                  i === current ? "bg-primary w-6" : "bg-muted-foreground/30"
-                }`}
+                className={`h-2 rounded-full transition-all duration-300 ${i === current ? "bg-primary w-6" : "bg-muted-foreground/30 w-2"
+                  }`}
                 aria-label={`Testimonio ${i + 1}`}
               />
             ))}

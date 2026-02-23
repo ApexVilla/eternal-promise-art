@@ -5,6 +5,10 @@
 @tailwind utilities;
 
 @layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+
   :root {
     --background: 0 0% 5%;
     --foreground: 45 20% 90%;
@@ -104,7 +108,7 @@
   }
 
   .gold-glow {
-    box-shadow: 0 0 20px hsl(43, 72%, 55% / 0.15), 0 0 40px hsl(43, 72%, 55% / 0.05);
+    box-shadow: 0 0 20px hsla(43, 72%, 55%, 0.15), 0 0 40px hsla(43, 72%, 55%, 0.05);
   }
 
   .section-dark {
@@ -138,5 +142,13 @@
 
   .animate-pulse-gold {
     animation: pulse-gold 3s ease-in-out infinite;
+  }
+
+  .scroll-to-top {
+    @apply fixed bottom-8 right-8 z-50 p-3 rounded-full bg-primary text-primary-foreground shadow-lg cursor-pointer transition-all duration-300;
+  }
+
+  .scroll-to-top:hover {
+    @apply bg-primary/90;
   }
 }
