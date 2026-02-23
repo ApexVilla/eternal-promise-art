@@ -20,7 +20,7 @@ const HistoriaSection = () => {
               <span className="gold-shimmer">El Origen de Berit Olam</span>
             </h2>
             <p className="text-foreground/70 font-body leading-relaxed mb-6">
-              El nombre Berit Olam nace de una revelación profunda basada en la palabra:
+              El nombre de Berit Olam nace del hebreo atráves de una revelación profunda basada en la palabra:
             </p>
             <blockquote className="gold-border-subtle border-l-2 pl-6 py-2 mb-6 italic text-foreground/60 font-display text-lg">
               "Conoce, pues, que Jehová tu Dios es Dios, Dios fiel, que guarda el pacto y la misericordia… hasta mil generaciones."

@@ -93,11 +93,11 @@ const HeroSection = () => (
         initial={{ opacity: 0, y: 30 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 1, delay: 0.4 }}
-        className="text-4xl md:text-6xl lg:text-7xl font-display font-bold leading-tight mb-6"
+        className="text-4xl md:text-5xl lg:text-7xl font-display font-bold leading-tight mb-6"
       >
-        <span className="gold-shimmer">Donde el Arte, la Elegancia</span>
+        <span className="gold-shimmer">Donde las Promesas se Transforman en Artes</span>
         <br />
-        <span className="gold-shimmer">y la Promesa se Encuentran</span>
+        <span className="gold-shimmer">y la Experiencia se Vuelve Eterna</span>
       </motion.h1>
 
       <motion.p
@@ -106,7 +106,7 @@ const HeroSection = () => (
         transition={{ duration: 0.8, delay: 0.8 }}
         className="text-foreground/60 font-body text-lg md:text-xl max-w-2xl mx-auto mb-10 leading-relaxed"
       >
-        Berit Olam nace de una promesa eterna. Creamos momentos inolvidables con elegancia, distinción y amor.
+        Una promesa eterna nos inspira y por eso diseñamos cada creación con compromiso y sofisticación
       </motion.p>
 
       <motion.div
