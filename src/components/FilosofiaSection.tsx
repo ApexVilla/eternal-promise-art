@@ -18,7 +18,7 @@ const FilosofiaSection = () => (
       >
         <p className="text-primary font-body text-sm tracking-[0.3em] uppercase mb-4">✨ Nuestra Esencia</p>
         <h2 className="text-3xl md:text-5xl font-display font-bold mb-8">
-          <span className="gold-shimmer">Filosofía de Marca</span>
+          <span className="gold-shimmer">Nuestra Visión Creativa</span>
         </h2>
         <p className="text-foreground/60 font-body text-lg md:text-xl leading-relaxed mb-12 italic">
           "Cada diseño es una obra de arte. Cada detalle es una expresión de amor. Cada evento es una promesa que perdura."

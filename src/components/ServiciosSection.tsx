@@ -1,28 +1,33 @@
 import { motion } from "framer-motion";
+import serviceDecoration from "../assets/service-decoration.png";
+import serviceGifts from "../assets/service-gifts.png";
+import serviceBride from "../assets/service-bride.png";
+import serviceQuinceanera from "../assets/service-quinceanera.png";
+import serviceGalaMen from "../assets/service-gala-men.png";
 
 const services = [
   {
-    icon: "🎉",
+    image: serviceDecoration,
     title: "Decoración y Diseño de Eventos",
     description: "Cumpleaños · Fiestas Sorpresa · Eventos Especiales · Detalles personalizados",
   },
   {
-    icon: "🎁",
+    image: serviceGifts,
     title: "Regalos Únicos y Personalizados",
     description: "Arte hecho con amor para sorprender",
   },
   {
-    icon: "👰",
+    image: serviceBride,
     title: "Vestidos de Novia",
     description: "Diseños elegantes que representan una promesa eterna",
   },
   {
-    icon: "👗",
+    image: serviceQuinceanera,
     title: "Vestidos para 15 Años",
     description: "Estética, glamour y distinción",
   },
   {
-    icon: "🤵",
+    image: serviceGalaMen,
     title: "Trajes de Gala para Caballeros",
     description: "Clase y presencia para momentos inolvidables",
   },
@@ -50,7 +55,7 @@ const ServiciosSection = () => (
         </h2>
       </motion.div>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-6xl mx-auto">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-7xl mx-auto">
         {services.map((service, i) => (
           <motion.div
             key={service.title}
@@ -60,24 +65,29 @@ const ServiciosSection = () => (
             transition={{ duration: 0.6, delay: i * 0.1 }}
             className="group relative h-full"
           >
-            <div className="h-full bg-card/40 backdrop-blur-md p-10 rounded-sm border border-white/5 hover:border-primary/30 transition-all duration-700 hover:gold-glow flex flex-col items-start overflow-hidden">
-              {/* Icon Background Glow */}
-              <div className="absolute -top-10 -right-10 w-32 h-32 bg-primary/5 blur-3xl rounded-full group-hover:bg-primary/10 transition-colors duration-700" />
+            <div className="h-full bg-card/40 backdrop-blur-md rounded-2xl border border-white/5 hover:border-primary/30 transition-all duration-700 hover:gold-glow flex flex-col items-start overflow-hidden">
+              {/* Image Container */}
+              <div className="relative w-full h-64 overflow-hidden">
+                <img
+                  src={service.image}
+                  alt={service.title}
+                  className="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-1000"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-60" />
+              </div>
 
-              <span className="text-4xl mb-6 block transform group-hover:scale-110 group-hover:-rotate-12 transition-transform duration-500">
-                {service.icon}
-              </span>
+              <div className="p-8 flex flex-col flex-grow">
+                <h3 className="text-xl font-display font-bold text-foreground mb-4 group-hover:gold-shimmer transition-all duration-500">
+                  {service.title}
+                </h3>
 
-              <h3 className="text-xl font-display font-bold text-foreground mb-4 group-hover:gold-shimmer transition-all duration-500">
-                {service.title}
-              </h3>
+                <p className="text-foreground/50 font-body text-sm leading-relaxed mb-6 group-hover:text-foreground/70 transition-colors duration-500">
+                  {service.description}
+                </p>
 
-              <p className="text-foreground/50 font-body text-sm leading-relaxed mb-6 group-hover:text-foreground/70 transition-colors duration-500">
-                {service.description}
-              </p>
-
-              {/* Bottom Decorative Line */}
-              <div className="mt-auto w-12 h-[1px] bg-primary/20 group-hover:w-full group-hover:bg-primary/50 transition-all duration-700" />
+                {/* Bottom Decorative Line */}
+                <div className="mt-auto w-12 h-[1.5px] bg-primary/20 group-hover:w-full group-hover:bg-primary/50 transition-all duration-700" />
+              </div>
             </div>
           </motion.div>
         ))}
