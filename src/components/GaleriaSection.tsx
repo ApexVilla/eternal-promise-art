@@ -10,7 +10,7 @@ const images = [
   { src: gallery1, alt: "Decoración con rosas", span: "row-span-2" },
   { src: gallery2, alt: "Vestido de novia", span: "row-span-2" },
   { src: gallery3, alt: "Regalos personalizados", span: "" },
-  { src: gallery6, alt: "Decoración de fiesta", span: "" },
+  { src: gallery6, alt: "Celebración de galas", span: "" },
   { src: gallery4, alt: "Traje de gala", span: "row-span-2" },
   { src: gallery5, alt: "Vestido de 15 años", span: "row-span-2" },
 ];
